@@ -1,13 +1,22 @@
-(deffacts datos (estanteria1 0)
-	(estanteria2 0)
-	(estanteria3 0)
+(deffacts datos (estanteria1 30)
+	(estanteria2 20)
+	(estanteria3 20)
 	(estanteria4 0)
-	(mostrador 0)
+	(mostrador 40)
 )
 	
 
 
 (defrule mostrador-estanteria2-40k
-	?f1 <- ()
+	?f1 <- (mostrador ?x)
+	?f2 <- (estanteria2 ?y)
+	(test (<= ?x 50))
+	=>
+	(assert (mostrador 0))
+	(assert (estanteria2 (+ ?y ?x)))
+	(retract ?f1)
+	(retract ?f2)
+	
+		
 
 )
